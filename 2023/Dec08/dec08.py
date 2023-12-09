@@ -1,4 +1,4 @@
-"""Advent of Code, 2023, Day 7"""
+"""Advent of Code, 2023, Day 8"""
 import math
 
 def follow(route, mymap, start='AAA', stop=lambda x,i: x=='ZZZ', k=0):
@@ -41,25 +41,22 @@ def main():
         # be correct. Worst case is that they never reach Z at the same time.
         # Checking all routes 100 times to see if period is consistant.
 
-        m = len(route)
-
+        route_length = len(route)
         ok = 0
         fail = 0
-
         for pos in mymap.keys():
             if check('A')(pos, 0):
                 p = pos
                 n = 0
                 for _ in range(100):
                     n1, p1 = follow(route, mymap, start=p, stop=check('Z'), k=n)
-                    if n1%m == 0 and n1-n == lengths[pos][0]:
+                    if n1%route_length == 0 and n1-n == lengths[pos][0]:
                         ok += 1
                     else:
                         print(p1, n1-n, lengths[pos][0])
                         fail += 1
                     n = n1
                     p = p1
-
     print(f"ok = {ok}, fail={fail}")
 
 if __name__ == "__main__":
