@@ -61,11 +61,11 @@ def main():
             prevline = line
             line = nextline
 
-    sum_of_gear_ratios = 0
-    for symbol in symbols:
-        if len(symbol["numbers"]) == 2:
-            sum_of_gear_ratios += symbol["numbers"][0]*symbol["numbers"][1]
-    print(f"part 2 : {sum_of_gear_ratios}")
+        sum_of_gear_ratios = 0
+        for symbol in symbols:
+            if len(symbol["numbers"]) == 2:
+                sum_of_gear_ratios += symbol["numbers"][0]*symbol["numbers"][1]
+        print(f"part 2 : {sum_of_gear_ratios}")
 
 if __name__ == "__main__":
     main()
