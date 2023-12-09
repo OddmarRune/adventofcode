@@ -57,7 +57,7 @@ def main():
                         fail += 1
                     n = n1
                     p = p1
-    print(f"ok = {ok}, fail={fail}")
+        print(f"ok = {ok}, fail={fail}")
 
 if __name__ == "__main__":
     main()
