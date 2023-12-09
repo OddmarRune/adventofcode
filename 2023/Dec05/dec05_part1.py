@@ -57,7 +57,7 @@ def main():
                 minimum = number
                 source = seed
 
-    print(f"closest location = {minimum}, corresponding seed = {source}")
+        print(f"closest location = {minimum}, corresponding seed = {source}")
 
 if __name__ == "__main__":
     main()
