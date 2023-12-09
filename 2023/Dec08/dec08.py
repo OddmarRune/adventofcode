@@ -1,12 +1,12 @@
 """Advent of Code, 2023, Day 8"""
 import math
 
-def follow(route, mymap, start='AAA', stop=lambda x,i: x=='ZZZ', k=0):
+def follow(route, mymap, start='AAA', stop=lambda x: x=='ZZZ', k=0):
     """ Follow route function """
     m = len(route)
     pos = start
     i = k
-    while i==k or not stop(pos,i):
+    while i == k or not stop(pos):
         l,r = mymap[pos]
         if route[i%m] == 'L':
             pos = l
@@ -27,10 +27,10 @@ def main():
                 mymap[start.strip()] = (l.strip(), r.strip())
         print(f"Part 1 : Number of steps {follow(route, mymap)[0]}")
 
-        check = lambda y: lambda x,i: x[2]==y
+        check = lambda y: lambda x: x[2]==y
         lengths = {}
         for pos in mymap.keys():
-            if check('A')(pos, 0):
+            if check('A')(pos):
                 lengths[pos] = follow(route, mymap, start=pos, stop=check('Z'))
         lcm = 1
         for _,(steps,_) in lengths.items():
@@ -45,7 +45,7 @@ def main():
         ok = 0
         fail = 0
         for pos in mymap.keys():
-            if check('A')(pos, 0):
+            if check('A')(pos):
                 p = pos
                 n = 0
                 for _ in range(100):

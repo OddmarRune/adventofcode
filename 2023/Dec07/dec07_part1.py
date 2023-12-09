@@ -1,6 +1,6 @@
 """Advent of Code, 2023, Day 7"""
 
-order_card = {'A':'23','K':'22','Q':'21','J':'20','T':'19',
+ORDER_CARD = {'A':'23','K':'22','Q':'21','J':'20','T':'19',
               '9':'18','8':'17','7':'16','6':'15','5':'14',
               '4':'13','3':'12','2':'11'}
 RANK_TO_STR = "012345"
@@ -17,7 +17,7 @@ def rank(hand):
             c += 1
             my_rank[c] += 1
     sorted_rank = ''.join([RANK_TO_STR[r] for r in sorted(my_rank, reverse=True)])+\
-        ''.join([order_card[card] for card in hand])
+        ''.join([ORDER_CARD[card] for card in hand])
     return int(sorted_rank)
 
 def main():
