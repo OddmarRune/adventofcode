@@ -77,16 +77,16 @@ def main():
                                               "range":number["range"]-range1}
                                 else:
                                     number = {}
-    min_location = -1
-    for map_line in reduced_map:
-        if min_location < 0:
-            min_location = map_line["dest"]
-            min_seed = map_line["source"]
-        else:
-            if min_location > map_line["dest"]:
+        min_location = -1
+        for map_line in reduced_map:
+            if min_location < 0:
                 min_location = map_line["dest"]
                 min_seed = map_line["source"]
-    print(f"closest location = {min_location}, corresponding seed = {min_seed}")
+            else:
+                if min_location > map_line["dest"]:
+                    min_location = map_line["dest"]
+                    min_seed = map_line["source"]
+        print(f"closest location = {min_location}, corresponding seed = {min_seed}")
 
 if __name__ == "__main__":
     main()
