@@ -25,8 +25,6 @@ def main():
                 start, lr = line.split("=")
                 l,r = lr.replace("(","").replace(")","").strip().split(",")
                 mymap[start.strip()] = (l.strip(), r.strip())
-
-
         print(f"Part 1 : Number of steps {follow(route, mymap)[0]}")
 
         check = lambda y: lambda x,i: x[2]==y
@@ -34,7 +32,6 @@ def main():
         for pos in mymap.keys():
             if check('A')(pos, 0):
                 lengths[pos] = follow(route, mymap, start=pos, stop=check('Z'))
-
         lcm = 1
         for _,(steps,_) in lengths.items():
             lcm = math.lcm(lcm, steps)
