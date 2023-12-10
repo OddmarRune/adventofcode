@@ -28,8 +28,7 @@ def main():
             row += DR[direction]
             col += DC[direction]
             steps += 1
-
-        print(f"steps to the middle of loop : {int(steps/2)}") # 7173
+        print(f"steps to the middle of the loop : {int(steps/2)}") # 7173
 
 if __name__ == "__main__":
     main()
