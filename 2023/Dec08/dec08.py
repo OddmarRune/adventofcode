@@ -39,21 +39,21 @@ def main():
 
         # This was kind of a long shot, and there is really no good reason for this to
         # be correct. Worst case is that they never reach Z at the same time.
-        # Checking all routes 100 times to see if period is consistant.
+        # Checking all routes 10 times to see if period is consistant.
 
         route_length = len(route)
         ok = 0
         fail = 0
         for pos in mymap.keys():
             if check('A')(pos):
-                p = pos
+                p = lengths[pos][1]
                 n = 0
-                for _ in range(100):
+                for _ in range(10):
                     n1, p1 = follow(route, mymap, start=p, stop=check('Z'), k=n)
-                    if n1%route_length == 0 and n1-n == lengths[pos][0]:
+                    if n1%route_length == 0 and n1-n == lengths[pos][0] and p1 == p:
                         ok += 1
                     else:
-                        print(p1, n1-n, lengths[pos][0])
+                        print(p, p1, n1-n, lengths[pos][0])
                         fail += 1
                     n = n1
                     p = p1
