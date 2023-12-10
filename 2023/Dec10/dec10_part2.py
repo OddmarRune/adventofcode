@@ -34,7 +34,7 @@ def main():
             row += DR[direction]
             col += DC[direction]
             steps += 1
-            
+
         circle = 0
         cols = len(table[0])
         for row in range(rows):
