@@ -3,7 +3,7 @@
 DIRECTIONS = ["|7F ", "L- F", "J -7", " JL|"]
 DR = [-1, 0, 0, 1]
 DC = [ 0,-1, 1, 0]
-PIPES = {'|':'║', 'F':'╔', '-':'═', '7':'╗', 'J':'╝', 'L':'╚' }
+PIPES = {'|':'║', 'F':'╔', '-':'═', '7':'╗', 'J':'╝', 'L':'╚', 'S':'@' }
 
 UNDETERMINED = 0
 CLOCKWISE = -1
@@ -17,7 +17,7 @@ def main(filename):
         for line in file.readlines():
             table.append(line.strip())
             if 'S' in line:
-                row, col = len(table), line.find('S')
+                row, col = len(table)-1, line.find('S')
         rows = len(table)
         cols = len(table[0])
 
@@ -48,11 +48,9 @@ def main(filename):
         loop_direction = UNDETERMINED
         cols = len(table[0])
         for row in range(rows):
-            if data[row][0] >=0:
-                continue
             for col in range(cols):
                 if data[row][col] < 0:
-                    continue 
+                    continue
                 if 0 < row < rows-1:
                     if data[row-1][col] == data[row][col]+1 \
                         or data[row+1][col] == data[row][col]-1:
@@ -75,13 +73,15 @@ def main(filename):
                     break
             if loop_direction != UNDETERMINED:
                 break
-        
+
         # Find all enclosed cells
         count = 0
         for row in range(rows):
             for search_col in range(cols):
                 col = search_col
-                if data[row][col] >= 0:
+                if data[row][search_col] >= 0:
+                    if data[row][search_col] == 0:
+                        print("hallo")
                     output[row][search_col] = PIPES[table[row][search_col]]
                     continue
                 while col<cols and data[row][col]<0:
