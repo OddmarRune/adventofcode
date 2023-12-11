@@ -38,29 +38,31 @@ def main():
         circle = 0
         cols = len(table[0])
         for row in range(rows):
-            if data[row][0] < 0:
-                for col in range(cols):
-                    if data[row][col] >= 0:
-                        if 0 < row < rows-1:
-                            if data[row-1][col] == data[row][col]+1 \
-                                or data[row+1][col] == data[row][col]-1:
-                                circle = -1
-                            else:
-                                circle = 1
-                        elif row == 0 and col < len(data[row])-1:
-                            if data[row][col+1] == data[row][col]+1 \
-                                or data[row+1][col] == data[row][col]-1:
-                                circle = -1
-                            else:
-                                circle = 1
-                        elif row == rows-1 and col < cols-1:
-                            if data[row-1][col] == data[row][col]+1 \
-                                or data[row][col+1] == data[row][col]-1:
-                                circle = -1
-                            else:
-                                circle = 1
-                    if circle != 0:
-                        break
+            if data[row][0] >=0:
+                continue
+            for col in range(cols):
+                if data[row][col] < 0:
+                    continue           
+                if 0 < row < rows-1:
+                    if data[row-1][col] == data[row][col]+1 \
+                        or data[row+1][col] == data[row][col]-1:
+                        circle = -1
+                    else:
+                        circle = 1
+                elif row == 0 and col < len(data[row])-1:
+                    if data[row][col+1] == data[row][col]+1 \
+                        or data[row+1][col] == data[row][col]-1:
+                        circle = -1
+                    else:
+                        circle = 1
+                elif row == rows-1 and col < cols-1:
+                    if data[row-1][col] == data[row][col]+1 \
+                        or data[row][col+1] == data[row][col]-1:
+                        circle = -1
+                    else:
+                        circle = 1
+                if circle != 0:
+                    break
             if circle != 0:
                 break
         count = 0
