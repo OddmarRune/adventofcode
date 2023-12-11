@@ -12,7 +12,7 @@ def main(filename):
         for line in file.readlines():
             table.append(line.strip())
             if 'S' in line:
-                row, col = len(table), line.find('S')
+                row, col = len(table)-1, line.find('S')
         rows = len(table)
         cols = len(table[0])
 
