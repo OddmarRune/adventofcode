@@ -44,7 +44,7 @@ def main():
         route_length = len(route)
         ok = 0
         fail = 0
-        for pos in mymap.keys():
+        for pos in mymap:
             if check('A')(pos):
                 p = lengths[pos][1]
                 n = 0
