@@ -52,20 +52,20 @@ def main(filename):
                 if data[row][col] < 0:
                     continue
                 if 0 < row < rows-1:
-                    if data[row-1][col] == data[row][col]+1 \
-                        or data[row+1][col] == data[row][col]-1:
+                    if data[row-1][col] == (data[row][col]+1)%steps \
+                        or data[row+1][col] == (data[row][col]-1)%steps:
                         loop_direction = CLOCKWISE
                     else:
                         loop_direction = COUNTERCLOCKWISE
                 elif row == 0 and col < len(data[row])-1:
-                    if data[row][col+1] == data[row][col]+1 \
-                        or data[row+1][col] == data[row][col]-1:
+                    if data[row][col+1] == (data[row][col]+1)%steps \
+                        or data[row+1][col] == (data[row][col]-1)%steps:
                         loop_direction = CLOCKWISE
                     else:
                         loop_direction = COUNTERCLOCKWISE
                 elif row == rows-1 and col < cols-1:
-                    if data[row-1][col] == data[row][col]+1 \
-                        or data[row][col+1] == data[row][col]-1:
+                    if data[row-1][col] == (data[row][col]+1)%steps \
+                        or data[row][col+1] == (data[row][col]-1)%steps:
                         loop_direction = CLOCKWISE
                     else:
                         loop_direction = COUNTERCLOCKWISE
@@ -80,8 +80,6 @@ def main(filename):
             for search_col in range(cols):
                 col = search_col
                 if data[row][search_col] >= 0:
-                    if data[row][search_col] == 0:
-                        print("hallo")
                     output[row][search_col] = PIPES[table[row][search_col]]
                     continue
                 while col<cols and data[row][col]<0:
@@ -89,24 +87,24 @@ def main(filename):
                 dcount = 0
                 if col<cols:
                     if 0 < row < rows-1:
-                        if data[row-1][col] == data[row][col]+1 \
-                            or data[row+1][col] == data[row][col]-1:
+                        if data[row-1][col] == (data[row][col]+1)%steps \
+                            or data[row+1][col] == (data[row][col]-1)%steps:
                             if loop_direction == COUNTERCLOCKWISE:
                                 dcount = 1
                         else:
                             if loop_direction == CLOCKWISE:
                                 dcount = 1
                     elif row == 0 and col < cols-1:
-                        if data[row][col+1] == data[row][col]+1 \
-                            or data[row+1][col] == data[row][col]-1:
+                        if data[row][col+1] == (data[row][col]+1)%steps \
+                            or data[row+1][col] == (data[row][col]-1)%steps:
                             if loop_direction == COUNTERCLOCKWISE:
                                 dcount = 1
                         else:
                             if loop_direction == CLOCKWISE:
                                 dcount = 1
                     elif row == rows-1 and col < cols-1:
-                        if data[row-1][col] == data[row][col]+1 \
-                            or data[row][col+1] == data[row][col]-1:
+                        if data[row-1][col] == (data[row][col]+1)%steps \
+                            or data[row][col+1] == (data[row][col]-1)%steps:
                             if loop_direction == COUNTERCLOCKWISE:
                                 dcount = 1
                         else:
