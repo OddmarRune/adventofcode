@@ -1,84 +1,92 @@
 """Advent of Code, 2023, Day 14"""
 
 def north(disc):
-    for i in range(len(disc[0])):
+    """Tilt North"""
+    rows, cols =  len(disc), len(disc[0])
+    for c in range(cols):
         o_count = 0
         o_start = 0
-        for l in range(len(disc)):
-            if disc[l][i] == 'O':
+        for r in range(rows):
+            if disc[r][c] == 'O':
                 o_count += 1
-            elif disc[l][i] == '#':
-                for c in range(o_start, o_start+o_count):
-                    disc[c][i] = 'O'
-                for c in range(o_start+o_count, l):
-                    disc[c][i] = '.'
+            elif disc[r][c] == '#':
+                for x in range(o_start, o_start+o_count):
+                    disc[x][c] = 'O'
+                for x in range(o_start+o_count, r):
+                    disc[x][c] = '.'
                 o_count = 0
-                o_start = l+1
+                o_start = r+1
         if o_count > 0:
-            for c in range(o_start, o_start+o_count):
-                disc[c][i] = 'O'
-            for c in range(o_start+o_count, len(disc)):
-                disc[c][i] = '.'
+            for x in range(o_start, o_start+o_count):
+                disc[x][c] = 'O'
+            for x in range(o_start+o_count, len(disc)):
+                disc[x][c] = '.'
 
 def west(disc):
-    for i in range(len(disc)):
+    """Tilt West"""
+    rows, cols =  len(disc), len(disc[0])
+    for r in range(rows):
         o_count = 0
         o_start = 0
-        for l in range(len(disc[0])):
-            if disc[i][l] == 'O':
+        for c in range(cols):
+            if disc[r][c] == 'O':
                 o_count += 1
-            elif disc[i][l] == '#':
-                for c in range(o_start, o_start+o_count):
-                    disc[i][c] = 'O'
-                for c in range(o_start+o_count, l):
-                    disc[i][c] = '.'
+            elif disc[r][c] == '#':
+                for x in range(o_start, o_start+o_count):
+                    disc[r][x] = 'O'
+                for x in range(o_start+o_count, c):
+                    disc[r][x] = '.'
                 o_count = 0
-                o_start = l+1
+                o_start = c+1
         if o_count > 0:
-            for c in range(o_start, o_start+o_count):
-                disc[i][c] = 'O'
-            for c in range(o_start+o_count, len(disc[0])):
-                disc[i][c] = '.'
+            for x in range(o_start, o_start+o_count):
+                disc[r][x] = 'O'
+            for x in range(o_start+o_count, cols):
+                disc[r][x] = '.'
 
 def south(disc):
-    for i in range(len(disc[0])):
+    """Tilt South"""
+    rows, cols =  len(disc), len(disc[0])
+    for c in range(cols):
         o_count = 0
-        o_start = len(disc)-1
-        for l in range(len(disc)-1,-1,-1):
-            if disc[l][i] == 'O':
+        o_start = rows-1
+        for r in range(rows-1,-1,-1):
+            if disc[r][c] == 'O':
                 o_count += 1
-            elif disc[l][i] == '#':
-                for c in range(o_start, o_start-o_count,-1):
-                    disc[c][i] = 'O'
-                for c in range(o_start-o_count, l, -1):
-                    disc[c][i] = '.'
+            elif disc[r][c] == '#':
+                for x in range(o_start, o_start-o_count,-1):
+                    disc[x][c] = 'O'
+                for x in range(o_start-o_count, r, -1):
+                    disc[x][c] = '.'
                 o_count = 0
-                o_start = l-1
+                o_start = r-1
         if o_count > 0:
-            for c in range(o_start, o_start-o_count, -1):
-                disc[c][i] = 'O'
-            for c in range(o_start-o_count, -1, -1):
-                disc[c][i] = '.'
+            for x in range(o_start, o_start-o_count, -1):
+                disc[x][c] = 'O'
+            for x in range(o_start-o_count, -1, -1):
+                disc[x][c] = '.'
 
 def east(disc):
-    for i in range(len(disc)):
+    """Tilt East"""
+    rows, cols =  len(disc), len(disc[0])
+    for r in range(rows):
         o_count = 0
-        o_start = len(disc[0])-1
-        for l in range(len(disc[0])-1,-1,-1):
-            if disc[i][l] == 'O':
+        o_start = cols-1
+        for c in range(cols-1,-1,-1):
+            if disc[r][c] == 'O':
                 o_count += 1
-            elif disc[i][l] == '#':
-                for c in range(o_start, o_start-o_count, -1):
-                    disc[i][c] = 'O'
-                for c in range(o_start-o_count, l, -1):
-                    disc[i][c] = '.'
+            elif disc[r][c] == '#':
+                for x in range(o_start, o_start-o_count, -1):
+                    disc[r][x] = 'O'
+                for x in range(o_start-o_count, c, -1):
+                    disc[r][x] = '.'
                 o_count = 0
-                o_start = l-1
+                o_start = c-1
         if o_count > 0:
-            for c in range(o_start, o_start-o_count, -1):
-                disc[i][c] = 'O'
-            for c in range(o_start-o_count, -1, -1):
-                disc[i][c] = '.'
+            for x in range(o_start, o_start-o_count, -1):
+                disc[r][x] = 'O'
+            for x in range(o_start-o_count, -1, -1):
+                disc[r][x] = '.'
 
 def cycle(disc, reps=1):
     """Calculate repeated cycles, detecting period"""
@@ -110,13 +118,12 @@ def cycle(disc, reps=1):
 def load(disc):
     """Calculate load"""
     total = 0
-    for i in range(len(disc)):
+    for r, line in enumerate(disc):
         c = 0
-        for l in range(len(disc[i])):            
-            if disc[i][l] == 'O':
+        for element in line:
+            if element == 'O':
                 c += 1
-        #print(len(disc)-i, c)
-        total += (len(disc)-i)*c
+        total += (len(disc)-r)*c
     return total
 
 def main(filename, repetitions=0):
