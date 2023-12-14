@@ -46,7 +46,7 @@ def main(filename):
             col += DC[direction]
             if row<lower_row_limit and DC[direction] != 0:
                 lower_row_limit = row
-                loop_direction = -DC[direction]
+                loop_direction = DC[direction]
             steps += 1
 
         print(f"Part 1 : steps to the middle of the loop : {int(steps/2)}")
@@ -73,10 +73,10 @@ def main(filename):
                     if 0 < row < rows-1:
                         if data[row-1][col] == (data[row][col]+1)%steps \
                             or data[row+1][col] == (data[row][col]-1)%steps:
-                            if loop_direction == CLOCKWISE:
+                            if loop_direction == COUNTERCLOCKWISE:
                                 delta_count = 1
                         else:
-                            if loop_direction == COUNTERCLOCKWISE:
+                            if loop_direction == CLOCKWISE:
                                 delta_count = 1
                 else:
                     delta_count = 0
