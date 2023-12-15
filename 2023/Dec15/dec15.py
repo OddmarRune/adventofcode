@@ -3,7 +3,7 @@
 def part1(filename):
     """Solution to part 1"""
     with open(filename, encoding="ascii") as file:
-        data = file.read() # .strip()+','
+        data = file.read()
         total = 0
         current = 0
         for c in data:
@@ -20,25 +20,21 @@ def part2(filename):
         data = file.read()
         current = 0
         boxes = []
-        box_nr = -1
         label = ""
-        read_lense = False        
+        read_lense = False
         for _ in range(256):
             boxes.append({})
         for c in data:
             if read_lense:
-                focal_length = int(c)
-                boxes[box_nr][label] = focal_length
+                boxes[current][label] = int(c) # focal_length
                 read_lense = False
             elif c in ",\n":
                 current = 0
                 label = ""
             elif c == '-':
-                box_nr = current
-                if label in boxes[box_nr]:
-                    boxes[box_nr].pop(label)
+                if label in boxes[current]:
+                    boxes[current].pop(label)
             elif c == '=':
-                box_nr = current
                 read_lense = True
             else:
                 label += c
